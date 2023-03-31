@@ -70,24 +70,23 @@ class _OrderStatuesDriverState extends State<OrderStatuesDriver> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: statuesList
                   .map((e) => InkWell(
-                onTap: (){
-                  setState(() {
-                    e['selected'] = !e['selected'];
-                    statuesList.forEach((element) {
-                      if(e != element ){
-                        element['selected'] = false;
-                      }
-                    });
-                  });
-                },
-                    child: Padding(
+                        onTap: () {
+                          setState(() {
+                            e['selected'] = !e['selected'];
+                            statuesList.forEach((element) {
+                              if (e != element) {
+                                element['selected'] = false;
+                              }
+                            });
+                          });
+                        },
+                        child: Padding(
                           padding: EdgeInsets.symmetric(
                             horizontal: 5.w,
                           ),
                           child: Container(
                             width: 100.w,
                             height: 36.h,
-
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(50.r),
                               border: Border.all(color: e['color']),
@@ -96,7 +95,7 @@ class _OrderStatuesDriverState extends State<OrderStatuesDriver> {
                             child: Center(child: Text(e['name'])),
                           ),
                         ),
-                  ))
+                      ))
                   .toList(),
             ),
             const Spacer(),
@@ -106,7 +105,41 @@ class _OrderStatuesDriverState extends State<OrderStatuesDriver> {
                 borderRadius: BorderRadius.circular(18.r),
                 child: ElevatedButton(
                   onPressed:
-                  statuesList.any((element) => element['selected'] == true) ? () {}:null,
+                      statuesList.any((element) => element['selected'] == true)
+                          ? () {
+                              showDialog(
+                                context: context,
+                                builder: (context) => SimpleDialog(
+                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.r)),
+                                    children: [
+                                  Container(
+                                    width: 150.w,
+                                    height: 150.h,
+
+                                    child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Icon(
+                                          Icons.check_circle,
+                                          color: mainColor,
+                                          size: 50.r,
+                                        ),
+                                        Center(
+                                          child: Text(
+                                            'Confirmation Message ',
+                                            style: TextStyle(
+                                              fontSize: 13.sp,
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  )
+                                ]),
+                              );
+                            }
+                          : null,
                   child: Text(
                     'Next',
                     style: TextStyle(color: Colors.white, fontSize: 18.sp),

@@ -26,7 +26,7 @@ class _LoginScreenState extends State<LoginScreen> {
             children: [
               const Icon(
                 Icons.arrow_back,
-                size: 20,
+                size: 18,
               ),
               SizedBox(
                 width: 3.w,
@@ -64,8 +64,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   filled: true,
                   hintText: 'Username',
                   fillColor: textFieldColor,
+
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(18.r),
+                    borderSide: BorderSide.none,
                   ),
                 ),
                 validator: (value){
@@ -106,6 +108,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   hintText: 'Password',
                   fillColor: textFieldColor,
                   border: OutlineInputBorder(
+                    borderSide: BorderSide.none,
                     borderRadius: BorderRadius.circular(18.r),
                   ),
                 ),
